@@ -4,11 +4,14 @@ import "../Styles/Nav.css";
 class Nav extends React.Component{
     render(){
         return(
-            <nam>
+            <nav>
                 <ul>
-                    <a href='/'><li></li></a>
+                    <a href='/'><li>Home</li></a>
+                    <a href='/all-posts'><li>All posts</li></a>
+                    <a href='/add-post'><li>Add post</li></a>
+                    <a href='/contact'><li>Contact</li></a>
                 </ul>
-            </nam>
+            </nav>
         )
     }
 }

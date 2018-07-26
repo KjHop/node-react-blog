@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Router} from "react-router-dom";
 import {history} from "./Functions/history";
+import Nav from './Components/Nav';
+import Viewer from './Components/Viewer';
 import './Styles/App.css';
 
 class App extends Component {
@@ -8,7 +10,7 @@ class App extends Component {
     return (
       <Router history = {history}>
       <div className="App">
-        <Navigate />
+        <Nav />
         <Viewer ref={node =>{
           if(node!== null){
             this.containerTarget = node;
