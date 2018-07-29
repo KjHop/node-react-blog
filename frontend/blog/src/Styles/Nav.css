@@ -4,21 +4,53 @@ nav{
     width: 100%;
     top:0px;
     left:0px;
-    height: 3.6vw;
+    height: 4vw;
     z-index:900;
 }
 
 nav > ul{
     float:left;
+    margin:1vw;
 }
 
 nav > ul > a > li{
     color: white;
     display: inline;
-    font-size:1.5vw;
+    margin-right:3rem;
+    font-size:1.7vw;
     padding:1vw;
     cursor: pointer;
     background-color:#1abc9c;
+    
+}
+@media only screen and (max-width:768px){
+    nav > ul > a > li{
+        display: block;
+        width: 100%;
+        font-size:5vw
+    }
+    nav > ul > a{
+        display: block;
+        text-decoration: none;
+        color:inherit;
+        width:100%;
+    }
+    nav > ul{
+        float:left;
+        width:100%;
+        padding-left:0vw;
+        height:1vh;
+        margin:0;
+        
+    }
+    #nav:target{
+        overflow: visible;
+    }
+    nav{
+        overflow:hidden;
+        height:8vw;
+    }
+    
 }
 nav > ul > a{
     text-decoration: none;
@@ -31,5 +63,5 @@ nav > ul > a:hover{
 }
 
 nav > ul > a >li:hover{
-    background-color:#16a085;
+    background-color:#16a08b;
 }

@@ -5,7 +5,10 @@ class Main extends React.Component{
     render(){
         return(
             <main>
-                <h1>Here goes shortcuted version of posts from these week</h1>
+                <h1>This week:</h1>
+                <div className='thisWeekPosts'>
+
+                </div>
             </main>
         )
     }

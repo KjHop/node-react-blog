@@ -1,0 +1,28 @@
+.hamburger{
+    display: block;
+    visibility: hidden;
+    color:white;
+}
+.hamburgerr{
+    display: none;
+}
+@media only screen and (max-width:768px){
+    .hamburger{
+        visibility: visible;
+        position: absolute;
+        top:0.5vw;
+        right:1vw;
+        font-size:6vw;
+        color:white;
+        z-index: 100;
+    }
+    .hamburgerr{
+        display: block;
+        height: 100%;
+        position: absolute;
+        top:0.5vw;
+        right:1.2vw;
+        width:5vw;
+        padding:9px;
+    }
+}
