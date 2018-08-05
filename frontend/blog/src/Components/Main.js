@@ -7,7 +7,7 @@ class Main extends React.Component{
             <main>
                 <h1>This week:</h1>
                 <div className='thisWeekPosts'>
-
+                    
                 </div>
             </main>
         )
