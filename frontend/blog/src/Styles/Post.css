@@ -1,0 +1,34 @@
+article{
+    width:95vw;
+}
+article > img{
+    width:25vw;
+    height:15vw;
+}
+article > h1 {
+    font-size:2vw;
+}
+article > h6 {
+    font-size:1vw;
+}
+article > p {
+    font-size:1.5vw;
+    white-space: pre-wrap;
+}
+
+@media screen and (max-width:768px){
+    article > img{
+        width:50vw;
+        height:35vw;
+    }
+    article > h1 {
+        font-size:5vw;
+    }
+    article > h6 {
+        font-size:2vw;
+    }
+    article > p {
+        font-size:3vw;
+    }
+    
+}

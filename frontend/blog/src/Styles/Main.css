@@ -1,20 +1,14 @@
-main{
-    padding-top:4vw;
-}
-
-main > h1{
-    margin:0;
-}
-
 .thisWeekPosts{
     display: flex;
-    width:80vw;
+    width:68vw;
     min-height: 65vh;
     flex-wrap:wrap;
+    margin-left:32%;
 }
 
-@media only screen and (max-width: 768px){
-    main{
-        padding-top: 8vh;
+@media screen and (max-width:768px){
+    .thisWeekPosts{
+        width:100vw;
+        margin-left:0px;
     }
 }
