@@ -2,3 +2,6 @@
   background-color:#dcdde1;
   min-height:100vh;
 }
+h1, h6{
+  margin:0;
+}
