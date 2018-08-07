@@ -1,22 +1,30 @@
 article{
-    width:95vw;
+    width:40vw;
+    margin-bottom:4vh;
+    margin-top:1vh;
 }
 article > img{
     width:25vw;
     height:15vw;
 }
 article > h1 {
-    font-size:2vw;
+    font-size:1.5vw;
 }
 article > h6 {
-    font-size:1vw;
+    font-size:0.8vw;
 }
 article > p {
-    font-size:1.5vw;
+    width:30vw;
+    font-size:1vw;
     white-space: pre-wrap;
 }
 
 @media screen and (max-width:768px){
+    article{
+        width:75vw;
+        margin-left:25vw;
+        margin-bottom:5vh;
+    }
     article > img{
         width:50vw;
         height:35vw;
@@ -29,6 +37,7 @@ article > p {
     }
     article > p {
         font-size:3vw;
+        width:50vw;
     }
     
 }

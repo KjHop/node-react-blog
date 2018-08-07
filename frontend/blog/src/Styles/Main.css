@@ -1,9 +1,9 @@
 .thisWeekPosts{
     display: flex;
-    width:68vw;
-    min-height: 65vh;
+    width:90vw;
+    min-height: 45vh;
     flex-wrap:wrap;
-    margin-left:32%;
+    margin-left:10%;
 }
 
 @media screen and (max-width:768px){

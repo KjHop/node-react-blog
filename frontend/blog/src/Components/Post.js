@@ -6,9 +6,10 @@ class ShortPost extends React.Component{
         return(
             <article>
                 <h1>{this.props.title}</h1>
+                <h6>{this.props.date}</h6>
                 <img src={this.props.src} alt={this.props.src}/>
                 <h6>{this.props.tags}</h6>
-                <p>{this.props.text}</p>
+                <p>{this.props.text.slice(0, 256)}   <a href={this.props.postUrl}>Read more...</a></p>
             </article>
         )
     }

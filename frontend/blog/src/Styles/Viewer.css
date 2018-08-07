@@ -3,8 +3,6 @@
 }
 @media screen and (max-width:768px){
     .Viewer{
-        margin-left:10vw;
-        margin-right:10vw;
         padding-top:8vw;
     }
 }
