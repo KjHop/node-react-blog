@@ -5,7 +5,13 @@ class AddPost extends React.Component{
     render(){
         return(
             <div className='AddPost'>
-                <h1>Gitara siema</h1>
+                <form action='post'>
+                    <label for='login'>Login</label><br/>
+                    <input type='text' name='login'/><br/>
+                    <label for='password'>Password</label><br/>
+                    <input type='password' name='password'/><br/>
+                    <input type='submit' value='Log in'/>
+                </form>
             </div>
         );
     }
