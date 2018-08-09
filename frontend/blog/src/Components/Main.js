@@ -6,6 +6,14 @@ import img from '../Assets/dummyImage.jpg';
 const dummyText = 'Lorem ipsum get text from database just for now this is dummy text to check how it looks Lorem ipsum get text from database just for now this is dummy text to check how it looks Lorem ipsum get text from database just for now this is dummy text to check how it looks Lorem ipsum get text from database just for now this is dummy text to check how it looks'
 const dummyPostUrl = 'https://google.com/';
 
+fetch('http://192.168.8.100:8080/')
+    .then(response=>{
+        return response.json();
+    })
+    .then(myJson=>{
+        console.log(myJson);
+    });
+
 class Main extends React.Component{
     render(){
         return(
