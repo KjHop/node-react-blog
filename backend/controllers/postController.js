@@ -38,11 +38,11 @@ module.exports = app =>{
     });
     app.post('/add-post', urlencodedParser, (request, response, next)=>{
         //Check if user is logged into database
-        if(request.cookies.logged === undefined){
+        if(request.cookies.logged === undefined || request.cookies.logged !== '1'){
             //Check if login and password are correct
             if(request.body.login === databaseLogin && request.body.password === databasePassword){
                 //If correct send cookie about being logged in and json to client
-                response.cookie('logged', 1, {maxAge:100});
+                response.cookie('logged', 1, {maxAge:999999, httpOnly: false});
                 response.send({
                     loggedIn: true
                 });
@@ -52,6 +52,7 @@ module.exports = app =>{
                     loggedIn:false
                 });
             }
+            console.log('git gud');
         }else{
             //Logged in => probably adding post or smth so add it to database
             let newPost = Post(request.body).save((err, data)=>{
