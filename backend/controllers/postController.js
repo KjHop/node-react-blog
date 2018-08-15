@@ -2,8 +2,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 
+//Get this from somewhere eles it's just a concept
+const databaseLogin = 'test';
+const databasePassword = 'testtest1';
 //Connect to database
-mongoose.connect('mongodb://test:testtest1@ds113442.mlab.com:13442/node-blog')
+mongoose.connect('mongodb://'+databaseLogin+':'+databasePassword+'@ds113442.mlab.com:13442/node-blog')
 
 //Declare schema
 const postSchema = new mongoose.Schema({
@@ -34,19 +37,28 @@ module.exports = app =>{
         });
     });
     app.post('/add-post', urlencodedParser, (request, response, next)=>{
-        let newPost = Post(request.body).save((err, data)=>{
-            if (err) throw err;
-            // response.json(data);
-            console.log(request.cookies);
-            if(request.cookies.logged === undefined){
-                //Check logging if true create cookie
-                response.cookie('logged', 1, {maxAge:999999});
-                response.send('');
+        //Check if user is logged into database
+        if(request.cookies.logged === undefined){
+            //Check if login and password are correct
+            if(request.body.login === databaseLogin && request.body.password === databasePassword){
+                //If correct send cookie about being logged in and json to client
+                response.cookie('logged', 1, {maxAge:100});
+                response.send({
+                    loggedIn: true
+                });
             }else{
-                //Logged in => probably adding post or smth
+                //Send response to client
+                response.send({
+                    loggedIn:false
+                });
             }
-            next();
-        })
+        }else{
+            //Logged in => probably adding post or smth so add it to database
+            let newPost = Post(request.body).save((err, data)=>{
+                if (err) throw err;
+                response.json(data);
+            })
+        }
     });
 
 }
