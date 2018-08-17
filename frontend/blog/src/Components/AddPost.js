@@ -31,16 +31,15 @@ class AddPost extends React.Component{
         }
     }
     handleSubmit(){
-        axios.post('http://localhost:8080/add-post', this.state)
-            .then(response=>{
-                console.log(response);
-                const { cookies } = this.props;
-                this.cookie = cookies.getAll();
-                this.setState({state: this.state});
-            })
-            .catch(error=>{
-                console.log(error);
-            })
+        fetch('http://localhost:8080/add-post',{
+            method:'post',
+            credentials:'same-origin',
+            withCookies: true,
+            data: this.state
+        }).then(response=>{
+            console.log(response);
+            console.log(document.cookie);
+        })
     }
     render(){
         console.log(this.cookie);

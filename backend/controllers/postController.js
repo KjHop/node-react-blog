@@ -32,20 +32,15 @@ module.exports = app =>{
             //Check for errors
             if (err) throw err;
             // response.send(JSON.stringify({posts: data}));
-            console.log(request.cookies);
-            console.log(request.signedCookies);
         });
     });
     app.post('/add-post', urlencodedParser, (request, response, next)=>{
         //Check if user is logged into database
-        if(request.cookies.logged === undefined || request.cookies.logged !== '1'){
+        if(request.cookies.logged === undefined || request.cookies.logged === '1'){
             //Check if login and password are correct
             if(request.body.login === databaseLogin && request.body.password === databasePassword){
                 //If correct send cookie about being logged in and json to client
-                response.cookie('logged', 1, {maxAge:999999, httpOnly: false});
-                response.send({
-                    loggedIn: true
-                });
+                response.cookie('logged', 1, {maxAge:999999, httpOnly: false}).send('cookie sent');
             }else{
                 //Send response to client
                 response.send({
