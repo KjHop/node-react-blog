@@ -41,7 +41,7 @@ module.exports = app =>{
             //Check if login and password are correct
             if(request.body.login === databaseLogin && request.body.password === databasePassword){
                 //If correct send cookie about being logged in and json to client
-                response.cookie('logged', 1, {maxAge:999999, httpOnly: false}).send('cookie sent');
+                response.cookie('logged', 1, {maxAge:999999, HttpOnly: false}).send('cookie sent');
             }else{
                 //Send response to client
                 response.send({

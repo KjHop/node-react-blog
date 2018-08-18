@@ -31,7 +31,7 @@ class AddPost extends React.Component{
         }
     }
     handleSubmit(){
-        fetch('http://localhost:8080/add-post',{
+        fetch('http://192.168.8.100:8080/add-post',{
             method:'post',
             credentials:'include',
             withCookies: true,
@@ -41,7 +41,6 @@ class AddPost extends React.Component{
             body: JSON.stringify(this.state)
         }).then(response=>{
             console.log(response);
-            console.log(document.cookie);
         })
     }
     render(){

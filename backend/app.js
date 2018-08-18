@@ -12,5 +12,5 @@ app.use((request, response, next)=>{
 //Start controller
 postController(app);
 //Start app
-app.listen(8080);
+app.listen(8080, '192.168.8.100');
 console.log("Server started...");
