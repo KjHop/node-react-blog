@@ -33,9 +33,12 @@ class AddPost extends React.Component{
     handleSubmit(){
         fetch('http://localhost:8080/add-post',{
             method:'post',
-            credentials:'same-origin',
+            credentials:'include',
             withCookies: true,
-            data: this.state
+            headers:{
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(this.state)
         }).then(response=>{
             console.log(response);
             console.log(document.cookie);

@@ -35,6 +35,7 @@ module.exports = app =>{
         });
     });
     app.post('/add-post', urlencodedParser, (request, response, next)=>{
+        console.log(request.body);
         //Check if user is logged into database
         if(request.cookies.logged === undefined || request.cookies.logged === '1'){
             //Check if login and password are correct
