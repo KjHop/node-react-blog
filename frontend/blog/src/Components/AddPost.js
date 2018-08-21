@@ -4,6 +4,17 @@ import '../Styles/AddPost.css'
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
+let readCookie = (name) =>{
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
+    for(let i=0;i < ca.length;i++) {
+        let c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
 class AddPost extends React.Component{
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
@@ -41,12 +52,16 @@ class AddPost extends React.Component{
             body: JSON.stringify(this.state)
         }).then(response=>{
             console.log(response);
+            this.forceUpdate();
+        }).catch(err=>{
+            console.log(err);
         })
     }
     render(){
-        console.log(this.cookie);
-        if(this.cookie === '1'){
-            //return page for
+        if(readCookie('logged') === '1'){
+            return(
+                <h1>Gitara siema</h1>
+            )
         }else{
             return(
                 <div className='AddPost'>
