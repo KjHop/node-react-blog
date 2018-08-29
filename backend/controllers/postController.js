@@ -37,7 +37,7 @@ module.exports = app =>{
     app.post('/add-post', urlencodedParser, (request, response, next)=>{
         console.log(request.body);
         //Check if user is logged into database
-        if(request.cookies.logged === undefined || request.cookies.logged === '1'){
+        if(request.cookies.logged === undefined){
             //Check if login and password are correct
             if(request.body.login === databaseLogin && request.body.password === databasePassword){
                 //If correct send cookie about being logged in and json to client

@@ -25,7 +25,13 @@ class AddPost extends React.Component{
         super(props);
         this.state={
             login: '',
-            password: ''
+            password: '',
+            title: '',
+            date: '',
+            tags: '',
+            text: '',
+            src: '',
+            postNumber: 0
         }
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,7 +51,12 @@ class AddPost extends React.Component{
         }
     }
     handlePostInput(e){
-
+        postProperties.forEach(property=>{
+            if(property === e.target.name){
+                this.state[property]=e.target.value;
+            }
+        });
+        console.log(this.state)
     }
     handleSubmit(){
         fetch('http://192.168.8.100:8080/add-post',{
@@ -62,17 +73,17 @@ class AddPost extends React.Component{
         }).catch(err=>{
             console.log(err);
         })
-        this.setState({
-            title: '',
-            date: '',
-            tags: '',
-            text: '',
-            src: '',
-            postNumber: 0
-        });
     }
     render(){
         if(readCookie('logged') === '1'){
+            this.state={
+                title: '',
+                date: '',
+                tags: '',
+                text: '',
+                src: '',
+                postNumber: 0
+            }
             return(
                 <form action='post'>
                     <label htmlFor='title'>Title</label>
