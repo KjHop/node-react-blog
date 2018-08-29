@@ -4,6 +4,8 @@ import '../Styles/AddPost.css'
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
+const postProperties = ['title', 'data', 'tags', 'text', 'src', 'postNumber'];
+
 let readCookie = (name) =>{
     let nameEQ = name + "=";
     let ca = document.cookie.split(';');
@@ -27,6 +29,7 @@ class AddPost extends React.Component{
         }
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePostInput = this.handlePostInput.bind(this);
     }
     handleInput(e){
         if(e.target.name==='login'){
@@ -40,6 +43,9 @@ class AddPost extends React.Component{
                 password: e.target.value
             })
         }
+    }
+    handlePostInput(e){
+
     }
     handleSubmit(){
         fetch('http://192.168.8.100:8080/add-post',{
@@ -56,11 +62,33 @@ class AddPost extends React.Component{
         }).catch(err=>{
             console.log(err);
         })
+        this.setState({
+            title: '',
+            date: '',
+            tags: '',
+            text: '',
+            src: '',
+            postNumber: 0
+        });
     }
     render(){
         if(readCookie('logged') === '1'){
             return(
-                <h1>Gitara siema</h1>
+                <form action='post'>
+                    <label htmlFor='title'>Title</label>
+                    <input type='text' name='title' onChange={(e)=>this.handlePostInput(e)}/>
+                    <label htmlFor='date'>Date</label>
+                    <input type='date' name='date' onChange={(e)=>this.handlePostInput(e)}/>
+                    <label htmlFor='tags'>Tags</label>
+                    <input type='text' name='tags' onChange={(e)=>this.handlePostInput(e)}/>
+                    <label htmlFor='text'>Text</label>
+                    <input type='text' name='text' onChange={(e)=>this.handlePostInput(e)}/>
+                    <label htmlFor='src'>Image</label>
+                    <input type='file' name='src' onChange={(e)=>this.handlePostInput(e)}/>
+                    <label htmlFor='postNumber'>Number</label>
+                    <input type='number' name='postNumber' onChange={(e)=>this.handlePostInput(e)}/>
+                    <input type='button' value='Post article' onClick={()=>this.handleSubmit()}/>
+                </form>
             )
         }else{
             return(
