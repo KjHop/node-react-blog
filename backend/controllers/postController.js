@@ -31,7 +31,7 @@ module.exports = app =>{
         Post.find({}, (err, data)=>{
             //Check for errors
             if (err) throw err;
-            // response.send(JSON.stringify({posts: data}));
+            response.send(JSON.stringify({posts: data}));
         });
     });
     app.post('/add-post', urlencodedParser, (request, response, next)=>{

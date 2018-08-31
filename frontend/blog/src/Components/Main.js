@@ -3,25 +3,33 @@ import '../Styles/Main.css';
 import ShortPost from './Post';
 import img from '../Assets/dummyImage.jpg';
 
-const dummyText = 'Lorem ipsum get text from database just for now this is dummy text to check how it looks Lorem ipsum get text from database just for now this is dummy text to check how it looks Lorem ipsum get text from database just for now this is dummy text to check how it looks Lorem ipsum get text from database just for now this is dummy text to check how it looks'
-const dummyPostUrl = 'https://google.com/';
-
-fetch('http://192.168.8.100:8080/')
-    .then(response=>{
-        return response.json();
-    })
-    .then(myJson=>{
-        console.log(myJson);
-    });
-
 class Main extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            allPosts: []
+        }
+    }
+    componentWillMount(){
+        fetch('http://192.168.8.100:8080/')
+        .then(response=>{
+            return response.json();
+        })
+        .then(myJson=>{
+            let allPosts = [];
+            myJson.posts.forEach(post=>{
+                allPosts.push(<ShortPost title={post.title} date={post.date} tags={post.tags} text={post.text} src={post.src} postUrl={post.postNumber} key={post.postNumber}></ShortPost>)
+            });
+            this.setState({
+                allPosts: allPosts
+            });
+        });;
+    }
     render(){
         return(
             <main>
                 <div className='thisWeekPosts'>
-                    <ShortPost title='Kozak post' date='07-08-2018' tags='post fajny taki' text={dummyText} src={img} postUrl={dummyPostUrl}/>
-                    <ShortPost title='Kozak post' date='07-08-2018' tags='post fajny taki' text={dummyText} src={img} postUrl={dummyPostUrl}/>
-                    <ShortPost title='Kozak post' date='07-08-2018' tags='post fajny taki' text={dummyText} src={img} postUrl={dummyPostUrl}/>
+                    {this.state.allPosts}
                 </div>
             </main>
         )
