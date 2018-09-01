@@ -1,18 +1,17 @@
 import * as React from 'react';
-import axios from 'axios';
 import '../Styles/AddPost.css'
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
-const postProperties = ['title', 'data', 'tags', 'text', 'src', 'postNumber'];
+const postProperties = ['title', 'data', 'tags', 'text', 'postNumber'];
 
 let readCookie = (name) =>{
     let nameEQ = name + "=";
     let ca = document.cookie.split(';');
     for(let i=0;i < ca.length;i++) {
         let c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        while (c.charAt(0)===' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
 }
@@ -30,7 +29,7 @@ class AddPost extends React.Component{
             date: '',
             tags: '',
             text: '',
-            src: '',
+            file: null,
             postNumber: 0
         }
         this.handleInput = this.handleInput.bind(this);
@@ -58,7 +57,12 @@ class AddPost extends React.Component{
         });
         console.log(this.state)
     }
+    handleFileInput(e){
+        this.state.file = e.target.files[0];
+        console.log(e.target.files[0]);
+    }
     handleSubmit(){
+        console.log(this.state);
         fetch('http://192.168.8.100:8080/add-post',{
             method:'post',
             credentials:'include',
@@ -81,7 +85,7 @@ class AddPost extends React.Component{
                 date: '',
                 tags: '',
                 text: '',
-                src: '',
+                file: null,
                 postNumber: 0
             }
             return(
@@ -94,8 +98,8 @@ class AddPost extends React.Component{
                     <input type='text' name='tags' onChange={(e)=>this.handlePostInput(e)}/>
                     <label htmlFor='text'>Text</label>
                     <input type='text' name='text' onChange={(e)=>this.handlePostInput(e)}/>
-                    <label htmlFor='src'>Image</label>
-                    <input type='file' name='src' onChange={(e)=>this.handlePostInput(e)}/>
+                    <label htmlFor='file'>Image</label>
+                    <input type='file' name='file' onChange={(e)=>this.handleFileInput(e)}/>
                     <label htmlFor='postNumber'>Number</label>
                     <input type='number' name='postNumber' onChange={(e)=>this.handlePostInput(e)}/>
                     <input type='button' value='Post article' onClick={()=>this.handleSubmit()}/>

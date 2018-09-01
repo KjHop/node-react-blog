@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const fs = require('fs');
 
 //Get this from somewhere eles it's just a concept
 const databaseLogin = 'test';
@@ -14,7 +15,6 @@ const postSchema = new mongoose.Schema({
     date: String,
     tags: String,
     text: String,
-    src: String,
     postNumber: Number
 })
 //Create mongoose model
@@ -52,6 +52,9 @@ module.exports = app =>{
         }else{
             //Logged in => probably adding post or smth so add it to database
             let newPost = Post(request.body).save((err, data)=>{
+                fs.writeFile(__dirname+'/images/'+request.body.file.name, request.body.file, err=>{
+                    if(err) throw err;
+                })
                 if (err) throw err;
                 response.json(data);
             })
