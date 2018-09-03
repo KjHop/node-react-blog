@@ -16,10 +16,9 @@ let readCookie = (name) =>{
     return null;
 }
 
+let formData = new FormData();
+
 class AddPost extends React.Component{
-    static propTypes = {
-        cookies: instanceOf(Cookies).isRequired
-    };
     constructor(props){
         super(props);
         this.state={
@@ -35,6 +34,7 @@ class AddPost extends React.Component{
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePostInput = this.handlePostInput.bind(this);
+        this.handlePostSubmit = this.handlePostSubmit.bind(this);
     }
     handleInput(e){
         if(e.target.name==='login'){
@@ -57,9 +57,23 @@ class AddPost extends React.Component{
         });
         console.log(this.state)
     }
+    handlePostSubmit(e){
+        fetch('http://192.168.8.100:8080/add-post/upload',{
+            method:'post',
+            credentials:'include',
+            withCookies: true,
+            body: formData
+        }).then(response=>{
+            console.log(response);
+            this.forceUpdate();
+        }).catch(err=>{
+            console.log(err);
+        })
+    }
     handleFileInput(e){
-        this.state.file = e.target.files[0];
-        console.log(e.target.files[0]);
+        formData.append('name', 'ekurwa');
+        formData.append('file', e.target.files[0], '2137.jpg');
+        console.log(formData);
     }
     handleSubmit(){
         console.log(this.state);
@@ -102,7 +116,7 @@ class AddPost extends React.Component{
                     <input type='file' name='file' onChange={(e)=>this.handleFileInput(e)}/>
                     <label htmlFor='postNumber'>Number</label>
                     <input type='number' name='postNumber' onChange={(e)=>this.handlePostInput(e)}/>
-                    <input type='button' value='Post article' onClick={()=>this.handleSubmit()}/>
+                    <input type='button' value='Post article' onClick={()=>this.handlePostSubmit()}/>
                 </form>
             )
         }else{

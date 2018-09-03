@@ -1,7 +1,20 @@
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const fs = require('fs');
+const multer = require('multer');
+const uuidv4 = require('uuid/v4');
+const path = require('path');
+//Configure storage
+const storage = multer.diskStorage({
+    destination: (req, file, cb)=>{
+        cb(null, './images');
+    },
+    filename: (req, file, cb)=>{
+        const newFileName= `${uuidv4()}${path.extname(file.originalname)}`;
+        cb(null, newFileName);
+    }
+});
+const upload = multer({storage});
 
 //Get this from somewhere eles it's just a concept
 const databaseLogin = 'test';
@@ -52,13 +65,16 @@ module.exports = app =>{
         }else{
             //Logged in => probably adding post or smth so add it to database
             let newPost = Post(request.body).save((err, data)=>{
-                fs.writeFile(__dirname+'/images/'+request.body.file.name, request.body.file, err=>{
-                    if(err) throw err;
-                })
                 if (err) throw err;
                 response.json(data);
             })
         }
+    })
+    app.post('/add-post/upload', upload.single('file'), (request, response, next)=>{
+        console.log(request.file);
+        // fs.writeFile(__dirname+'/images/'+request.body.file.name, request.body.file, "binary", err=>{
+        //     if(err) throw err;
+        // })
+        response.send();
     });
-
 }
