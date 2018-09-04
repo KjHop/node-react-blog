@@ -1,7 +1,6 @@
 import * as React from 'react';
 import '../Styles/AddPost.css'
-import { instanceOf } from 'prop-types';
-import { withCookies, Cookies } from 'react-cookie';
+import { withCookies} from 'react-cookie';
 
 const postProperties = ['title', 'data', 'tags', 'text', 'postNumber'];
 
@@ -64,15 +63,16 @@ class AddPost extends React.Component{
             withCookies: true,
             body: formData
         }).then(response=>{
-            console.log(response);
-            this.forceUpdate();
-        }).catch(err=>{
+            this.state.date = new Date().getUTCFullYear()+'-'+new Date().getMonth()+'-'+new Date().getDay()+'-'+new Date().getHours()+'-'+new Date().getMinutes()+'-'+new Date().getSeconds();
+            this.handleSubmit()
+        })
+        .catch(err=>{
             console.log(err);
         })
     }
     handleFileInput(e){
         formData.append('name', 'ekurwa');
-        formData.append('file', e.target.files[0], '2137.jpg');
+        formData.append('file', e.target.files[0]);
         console.log(formData);
     }
     handleSubmit(){

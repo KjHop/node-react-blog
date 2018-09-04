@@ -18,7 +18,7 @@ class Main extends React.Component{
         .then(myJson=>{
             let allPosts = [];
             myJson.posts.forEach(post=>{
-                allPosts.push(<ShortPost title={post.title} date={post.date} tags={post.tags} text={post.text} src={post.src} postUrl={post.postNumber} key={post.postNumber}></ShortPost>)
+                allPosts.push(<ShortPost title={post.title} date={post.date} tags={post.tags} text={post.text} src={post.src} postUrl={post.postNumber} key={post.date}></ShortPost>)
             });
             this.setState({
                 allPosts: allPosts

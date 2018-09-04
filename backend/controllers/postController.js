@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
         cb(null, './images');
     },
     filename: (req, file, cb)=>{
-        const newFileName= `${uuidv4()}${path.extname(file.originalname)}`;
+        const newFileName= `${new Date().getUTCFullYear()+'-'+new Date().getMonth()+'-'+new Date().getDay()+'-'+new Date().getHours()+'-'+new Date().getMinutes()+'-'+new Date().getSeconds()+'.jpg'}`;
         cb(null, newFileName);
     }
 });
