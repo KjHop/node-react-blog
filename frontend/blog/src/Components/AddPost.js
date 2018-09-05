@@ -27,6 +27,7 @@ class AddPost extends React.Component{
             date: '',
             tags: '',
             text: '',
+            src: '',
             file: null,
             postNumber: 0
         }
@@ -64,6 +65,7 @@ class AddPost extends React.Component{
             body: formData
         }).then(response=>{
             this.state.date = new Date().getUTCFullYear()+'-'+new Date().getMonth()+'-'+new Date().getDay()+'-'+new Date().getHours()+'-'+new Date().getMinutes()+'-'+new Date().getSeconds();
+            this.state.src = 'http://192.168.8.100:8080/images/'+this.state.date +'.jpg';
             this.handleSubmit()
         })
         .catch(err=>{

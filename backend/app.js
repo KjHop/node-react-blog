@@ -9,6 +9,7 @@ app.use((request, response, next)=>{
     response.header('Access-Control-Allow-Credentials', 'true');
     next();
 });
+app.use('/images', express.static('images'));
 //Start controller
 postController(app);
 //Start app

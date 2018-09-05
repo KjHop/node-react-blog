@@ -28,6 +28,7 @@ const postSchema = new mongoose.Schema({
     date: String,
     tags: String,
     text: String,
+    src: String,
     postNumber: Number
 })
 //Create mongoose model
