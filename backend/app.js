@@ -1,5 +1,7 @@
 const express = require("express");
-const postController = require("./controllers/postController");
+const postController = require("./components/post/controller");
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const urlencodedParser = bodyParser.urlencoded({extended:false});
 
 const app = express();
