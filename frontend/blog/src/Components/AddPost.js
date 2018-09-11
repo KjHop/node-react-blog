@@ -105,20 +105,18 @@ class AddPost extends React.Component{
                 postNumber: 0
             }
             return(
-                <form action='post'>
+                <form action='post' onSubmit={()=>this.handlePostSubmit()}>
                     <label htmlFor='title'>Title</label>
-                    <input type='text' name='title' onChange={(e)=>this.handlePostInput(e)}/>
+                    <input type='text' name='title' onChange={(e)=>this.handlePostInput(e)} required/>
                     <label htmlFor='date'>Date</label>
-                    <input type='date' name='date' onChange={(e)=>this.handlePostInput(e)}/>
+                    <input type='date' name='date' onChange={(e)=>this.handlePostInput(e)} required/>
                     <label htmlFor='tags'>Tags</label>
-                    <input type='text' name='tags' onChange={(e)=>this.handlePostInput(e)}/>
+                    <input type='text' name='tags' onChange={(e)=>this.handlePostInput(e)} required/>
                     <label htmlFor='text'>Text</label>
-                    <input type='text' name='text' onChange={(e)=>this.handlePostInput(e)}/>
+                    <textarea name='text' onChange={(e)=>this.handlePostInput(e)} required/>
                     <label htmlFor='file'>Image</label>
-                    <input type='file' name='file' onChange={(e)=>this.handleFileInput(e)}/>
-                    <label htmlFor='postNumber'>Number</label>
-                    <input type='number' name='postNumber' onChange={(e)=>this.handlePostInput(e)}/>
-                    <input type='button' value='Post article' onClick={()=>this.handlePostSubmit()}/>
+                    <input type='file' name='file' onChange={(e)=>this.handleFileInput(e)} required/>
+                    <input type='submit' value='Post article'/>
                 </form>
             )
         }else{
