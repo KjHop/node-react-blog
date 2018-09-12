@@ -19,11 +19,9 @@ class AllPosts extends React.Component{
             return response.json();
         })
         .then(myJson=>{
-            let num = 1;
             let allPosts = [];
             myJson.posts.forEach(post=>{
-                allPosts.push(<li key={num}><a href={post.src}>{num}.{post.title}</a></li>);
-                num++;
+                allPosts.push(<li key={allPosts.length+1}><a href={post.src}>{allPosts.length+1}.{post.title}</a></li>);
             });
             this.setState({
                 allPosts: allPosts
