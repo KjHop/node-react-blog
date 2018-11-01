@@ -8,7 +8,5 @@ exports.connectToDatabase = (mongoose) => {
   );
 };
 exports.checkCreditionals = (login, password)=>{
-  if(login === databaseLogin && password === databasePassword){
-    return true;
-  }return false;
+  return (login === databaseLogin && password === databasePassword);
 }

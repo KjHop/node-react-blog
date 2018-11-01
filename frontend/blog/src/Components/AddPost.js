@@ -58,6 +58,7 @@ class AddPost extends React.Component{
         console.log(this.state)
     }
     handlePostSubmit(e){
+        e.preventDefault();
         fetch('http://192.168.8.100:8080/add-post/upload',{
             method:'post',
             credentials:'include',
@@ -73,9 +74,8 @@ class AddPost extends React.Component{
         })
     }
     handleFileInput(e){
-        formData.append('name', 'ekurwa');
+        formData.append('name', 'file');
         formData.append('file', e.target.files[0]);
-        console.log(formData);
     }
     handleSubmit(){
         console.log(this.state);
@@ -96,6 +96,11 @@ class AddPost extends React.Component{
     }
     render(){
         if(readCookie('logged') === '1'){
+            fetch('https://192.168.8.100:8080/postNumber',{
+                method:"get"
+            }).then(response=>{
+                console.log(response);
+            });
             this.state={
                 title: '',
                 date: '',
@@ -105,7 +110,7 @@ class AddPost extends React.Component{
                 postNumber: 0
             }
             return(
-                <form action='post' onSubmit={()=>this.handlePostSubmit()}>
+                <form action='post' onSubmit={(e)=>this.handlePostSubmit(e)}>
                     <label htmlFor='title'>Title</label>
                     <input type='text' name='title' onChange={(e)=>this.handlePostInput(e)} required/>
                     <label htmlFor='date'>Date</label>

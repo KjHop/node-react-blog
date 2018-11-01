@@ -20,6 +20,7 @@ class AllPosts extends React.Component{
         })
         .then(myJson=>{
             let allPosts = [];
+            console.log(myJson.posts);
             myJson.posts.forEach(post=>{
                 allPosts.push(<li key={allPosts.length+1}><a href={post.src}>{allPosts.length+1}.{post.title}</a></li>);
             });
