@@ -65,7 +65,7 @@ class AddPost extends React.Component{
             withCookies: true,
             body: formData
         }).then(response=>{
-            this.state.date = new Date().getUTCFullYear()+'-'+new Date().getMonth()+'-'+new Date().getDay()+'-'+new Date().getHours()+'-'+new Date().getMinutes()+'-'+new Date().getSeconds();
+            this.state.date = new Date().getUTCFullYear()+'-'+new Date().getMonth()+'-'+new Date().getDate()+'-'+new Date().getHours()+'-'+new Date().getMinutes()+'-'+new Date().getSeconds();
             this.state.src = 'http://192.168.8.100:8080/images/'+this.state.date +'.jpg';
             this.handleSubmit()
         })

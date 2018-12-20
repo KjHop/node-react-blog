@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
       "-" +
       new Date().getMonth() +
       "-" +
-      new Date().getDay() +
+      new Date().getDate() +
       "-" +
       new Date().getHours() +
       "-" +
